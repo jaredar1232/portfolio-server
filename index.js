@@ -15,7 +15,6 @@ app.use(
     origin: process.env.FONT_END_URL,
     allowedHeaders: ["Content-Type", "Authorization"],
     optionsSuccessStatus: 200,
-    "Access-Control-Allow-Origin": "*",
   })
 );
 
