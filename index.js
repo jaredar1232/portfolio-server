@@ -12,10 +12,7 @@ const port = 1232;
 
 app.use(
   cors({
-    origin: [
-      "http://localhost:8000",
-      "https://eloquent-tereshkova-a18ecc.netlify.app",
-    ],
+    origin: process.env.FONT_END_URL,
     optionsSuccessStatus: 200,
   })
 );
