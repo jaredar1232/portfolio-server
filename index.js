@@ -10,14 +10,14 @@ require("dotenv").config();
 const app = express();
 const port = 1232;
 
-app.use(cors());
-// app.use(
-//   cors({
-//     origin: process.env.FONT_END_URL,
-//     allowedHeaders: ["Content-Type", "Authorization"],
-//     optionsSuccessStatus: 200,
-//   })
-// );
+// app.use(cors());
+app.use(
+  cors({
+    origin: process.env.FONT_END_URL,
+    allowedHeaders: ["Content-Type", "Authorization"],
+    optionsSuccessStatus: 200,
+  })
+);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
