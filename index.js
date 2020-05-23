@@ -10,26 +10,27 @@ require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 1232;
 
-const logStuff = function (req, res, next) {
-  console.log("test log");
-  console.log(req.headers);
-  next();
-};
+// const logStuff = function (req, res, next) {
+//   console.log("test log");
+//   console.log(req.headers);
+//   next();
+// };
 
 // app.use(cors());
 app.use(
   cors({
     origin: process.env.FRONT_END_URL,
-    // allowedHeaders: ["Content-Type", "Authorization"],
-    // optionsSuccessStatus: 200,
+    optionsSuccessStatus: 200,
   })
 );
+// process.env.FRONT_END_URL;
+// allowedHeaders: ["Content-Type", "Authorization"],
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
-app.use(logStuff);
+// app.use(logStuff);
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
@@ -46,7 +47,7 @@ app.post("/api", async (req, res) => {
 
   const msg = {
     to: "jaredar@gmail.com",
-    from: `${email}`,
+    from: `jaredar@gmail.com`,
     subject: `${subject}`,
     text: `Name: ${name}. Message: ${message}`,
     html: `<strong>${message}</strong>`,
@@ -62,7 +63,7 @@ app.post("/api", async (req, res) => {
     }
   }
 
-  res.sendStatus(200).res.end();
+  res.sendStatus(200).end();
 });
 
 app.listen(port, () => console.log(`SERVER ON @ ${port}!`.cyan));
