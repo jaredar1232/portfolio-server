@@ -10,6 +10,12 @@ require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 1232;
 
+const logStuff = function (req, res, next) {
+  console.log("test log");
+  console.log(req.headers);
+  next();
+};
+
 // app.use(cors());
 app.use(
   cors({
@@ -23,17 +29,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
+app.use(logStuff);
+
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-app.get("/", (req, res) => {
-  console.log(process.env.FRONT_END_URL);
-  console.log(req.headers);
-});
+// app.get("/", (req, res) => {
+//   console.log(process.env.FRONT_END_URL);
+//   console.log(req.headers);
+// });
 
 app.post("/api", async (req, res) => {
-  console.log(process.env.FRONT_END_URL);
-  console.log(req.headers);
-
   const name = req.body.name;
   const email = req.body.email;
   const subject = req.body.subject;
