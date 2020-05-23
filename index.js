@@ -57,7 +57,7 @@ app.post("/", async (req, res) => {
     }
   }
 
-  res.end();
+  res.sendStatus(200).res.end();
 });
 
 app.listen(port, () => console.log(`SERVER ON @ ${port}!`.cyan));
