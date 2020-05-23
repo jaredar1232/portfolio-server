@@ -17,6 +17,7 @@ const logStuff = function (req, res, next) {
 };
 
 // app.use(cors());
+app.options("*", cors());
 app.use(
   cors({
     origin: process.env.FRONT_END_URL,
