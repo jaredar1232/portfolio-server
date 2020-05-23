@@ -24,6 +24,11 @@ app.use(morgan("dev"));
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
+});
+
 app.post("/", async (req, res) => {
   const name = req.body.name;
   const email = req.body.email;
