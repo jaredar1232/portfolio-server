@@ -14,8 +14,8 @@ const port = process.env.PORT || 1232;
 app.use(
   cors({
     origin: process.env.FRONT_END_URL,
-    allowedHeaders: ["Content-Type", "Authorization"],
-    optionsSuccessStatus: 200,
+    // allowedHeaders: ["Content-Type", "Authorization"],
+    // optionsSuccessStatus: 200,
   })
 );
 
