@@ -25,7 +25,15 @@ app.use(morgan("dev"));
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
+app.get("/", (req, res) => {
+  console.log(process.env.FRONT_END_URL);
+  console.log(req.headers);
+});
+
 app.post("/", async (req, res) => {
+  console.log(process.env.FRONT_END_URL);
+  console.log(req.headers);
+
   const name = req.body.name;
   const email = req.body.email;
   const subject = req.body.subject;
