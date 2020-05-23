@@ -13,7 +13,7 @@ const port = 1232;
 // app.use(cors());
 app.use(
   cors({
-    origin: process.env.FONT_END_URL,
+    origin: process.env.FRONT_END_URL,
     allowedHeaders: ["Content-Type", "Authorization"],
     optionsSuccessStatus: 200,
   })
