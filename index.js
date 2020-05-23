@@ -9,13 +9,16 @@ require("dotenv").config();
 
 const app = express();
 const port = 1232;
-app.options("/", cors());
+
 app.use(
   cors({
     origin: process.env.FONT_END_URL,
+    allowedHeaders: ["Content-Type", "Authorization"],
     optionsSuccessStatus: 200,
   })
 );
+app.options("*", cors());
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
