@@ -25,12 +25,12 @@ app.use(morgan("dev"));
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-app.get("/api", (req, res) => {
+app.get("/", (req, res) => {
   console.log(process.env.FRONT_END_URL);
   console.log(req.headers);
 });
 
-app.post("/", async (req, res) => {
+app.post("/api", async (req, res) => {
   console.log(process.env.FRONT_END_URL);
   console.log(req.headers);
 
