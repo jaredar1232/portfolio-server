@@ -4,19 +4,18 @@ const morgan = require("morgan");
 const colors = require("colors");
 const sgMail = require("@sendgrid/mail");
 const cors = require("cors");
-
-require("dotenv").config();
-
 const app = express();
 const port = process.env.PORT || 1232;
 
-const logStuff = function (req, res, next) {
-  console.log("test log");
-  console.log(req.headers);
-  next();
-};
+require("dotenv").config();
 
-// app.use(cors());
+// const logStuff = function (req, res, next) {
+//   console.log("test log");
+//   console.log(req.headers);
+//   next();
+// };
+// app.use(logStuff);
+
 // app.options("*", cors());'
 app.options("/api", cors()); // enable pre-flight request for POST request
 app.use(
@@ -25,21 +24,11 @@ app.use(
     optionsSuccessStatus: 200,
   })
 );
-// process.env.FRONT_END_URL;
-// allowedHeaders: ["Content-Type", "Authorization"],
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
-app.use(logStuff);
-
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-
-// app.get("/", (req, res) => {
-//   console.log(process.env.FRONT_END_URL);
-//   console.log(req.headers);
-// });
 
 app.post("/api", async (req, res) => {
   const name = req.body.name;
@@ -51,8 +40,8 @@ app.post("/api", async (req, res) => {
     to: "jaredar@gmail.com",
     from: `jaredar@gmail.com`,
     subject: `Portfolio Message: ${subject}`,
-    text: `Name: ${name}, Email: ${email}, Message: ${message}`,
-    html: `<strong>Name: ${name}, Email: ${email}, Message: ${message}</strong>`,
+    text: `Name: ${name}\n Email: ${email}\n Message: ${message}`,
+    html: `<strong>Name: ${name}\n Email: ${email}\n Message: ${message}</strong>`,
   };
 
   try {
