@@ -41,7 +41,7 @@ app.post("/api", async (req, res) => {
     from: `jaredar@gmail.com`,
     subject: `Portfolio Message: ${subject}`,
     text: `Name: ${name}\n Email: ${email}\n Message: ${message}`,
-    html: `<strong>Name: ${name}\n Email: ${email}\n Message: ${message}</strong>`,
+    html: `<strong>Name: ${name}<br> Email: ${email}<br> Message: ${message}</strong>`,
   };
 
   try {
