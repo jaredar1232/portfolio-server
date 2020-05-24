@@ -17,7 +17,7 @@ const logStuff = function (req, res, next) {
 };
 
 // app.use(cors());
-app.options("*", cors());
+// app.options("*", cors());
 app.use(
   cors({
     origin: process.env.FRONT_END_URL,
@@ -40,7 +40,7 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 //   console.log(req.headers);
 // });
 
-app.post("/api", async (req, res) => {
+app.post("/api", cors(), async (req, res) => {
   const name = req.body.name;
   const email = req.body.email;
   const subject = req.body.subject;
@@ -49,9 +49,9 @@ app.post("/api", async (req, res) => {
   const msg = {
     to: "jaredar@gmail.com",
     from: `jaredar@gmail.com`,
-    subject: `${subject}`,
-    text: `Name: ${name}. Message: ${message}`,
-    html: `<strong>${message}</strong>`,
+    subject: `Portfolio Message: ${subject}`,
+    text: `Name: ${name}, Email: ${email}, Message: ${message}`,
+    html: `<strong>Name: ${name}, Email: ${email}, Message: ${message}</strong>`,
   };
 
   try {
